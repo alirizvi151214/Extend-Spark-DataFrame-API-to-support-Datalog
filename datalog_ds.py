@@ -1,10 +1,13 @@
 class DLProgram:
 
     def __init__(self, dlv_rule=[]):
-        self.rules_list = dlv_rule
+        self.dlv_rule = dlv_rule
 
     def add_rule(self, input_rule):
-        self.rules_list.append(input_rule)
+        self.dlv_rule.append(input_rule)
+
+    def __repr__(self):
+        return f"DLProgram({self.dlv_rule})"
 
 
 class DLRule:
@@ -50,6 +53,12 @@ class DLAtom:
 class DLVariable:
     def __init__(self, name):
         self.name = name
+
+    def __hash__(self):
+        return self.name.__hash__()
+
+    def __eq__(self, other):
+        return self.name == other.name
 
     def __repr__(self):
         return f"{self.name}"
